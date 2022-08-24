@@ -59,3 +59,8 @@ a {
 .container {
   direction: rtl;
 }
+
+.active {
+  color: dodgerblue;
+  font-weight: 500;
+}

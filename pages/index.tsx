@@ -1,11 +1,9 @@
 import type { NextPage } from "next";
-import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import { Box, Typography, Button } from "@mui/material";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
-
+import config from "../config.json";
 const container = {
   display: "flex",
   flexDirection: "column",
@@ -22,7 +20,8 @@ const Home: NextPage = () => {
     <>
       <Box sx={container}>
         <Image
-          src="https://picsum.photos/800/600"
+          src={config.apiEndPoint}
+          loading="eager"
           width="800"
           height="400"
           style={{ borderRadius: "15px" }}
