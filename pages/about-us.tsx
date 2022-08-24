@@ -19,10 +19,10 @@ const AboutUs = ({ darkMode }: PageProps) => {
   const [startLoading, setStartLoading] = useState(false);
   // CDM
   useEffect(() => {
-    if (loading) {
+    if (!loading) {
       setTimeout(() => {
         setStartLoading(true);
-      }, 1000);
+      }, 2000);
     }
     setStartLoading(true);
   }, []);
