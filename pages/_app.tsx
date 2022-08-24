@@ -4,14 +4,14 @@ import NavBar from "../components/navBar";
 import RTL from "../services/RTL";
 import { Box } from "@mui/material";
 import { useState } from "react";
-import { bodyStyle } from "../styles/Body";
+import pageContainer from "../styles/Body";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [darkMode, setDarkMode] = useState(false);
 
   return (
     <>
-      <Box sx={bodyStyle(darkMode)}>
+      <Box sx={pageContainer(darkMode)}>
         <RTL>
           <NavBar darkMode={darkMode} onSetDarkMode={setDarkMode} />
           <Component darkMode={darkMode} {...pageProps} />

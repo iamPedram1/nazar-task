@@ -8,5 +8,6 @@ const nightMode = {
   backgroundColor: "#1E272E",
 };
 
-export const bodyStyle = (isNight: boolean): object[] | object =>
-  isNight ? [container, nightMode] : container;
+export default function pageContainer(isNight: boolean): object[] | object {
+  return isNight ? [container, nightMode] : container;
+}
