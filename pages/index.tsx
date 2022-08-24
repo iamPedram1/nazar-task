@@ -5,10 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import config from "../config.json";
-
+import Head from "next/head";
 const Home = ({ darkMode }: PageProps) => {
   return (
     <>
+      <Head>
+        <title>صفحه اصلی</title>
+      </Head>
       <Box sx={homeContainer(darkMode)}>
         <Image
           src={config.apiEndPoint}
