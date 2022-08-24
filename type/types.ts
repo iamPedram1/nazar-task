@@ -6,3 +6,7 @@ export interface NavBarProps {
 export interface PageProps {
   darkMode: boolean;
 }
+
+export interface RTLProps {
+  children: JSX.Element | JSX.Element[];
+}
