@@ -8,7 +8,7 @@ const flexRow = {
 };
 
 const text = {
-  fontWeight: "600",
+  fontWeight: "400",
 };
 
 const NavBar = (): JSX.Element => {
@@ -20,25 +20,32 @@ const NavBar = (): JSX.Element => {
           <Typography sx={text}>درباره ما</Typography>
         </Box>
         <Box sx={[flexRow, { gap: "20px" }]}>
-          <Grid container direction="row" sx={{ width: 100 }}>
+          <Grid
+            container
+            direction="row"
+            alignItems="center"
+            sx={{ width: 100 }}
+          >
             <Grid item>
-              <WbSunny sx={{ color: "#FFB82E" }} />
+              <WbSunny
+                sx={{ color: "#FFB82E", position: "relative", top: "5px" }}
+              />
             </Grid>
             <Grid item>
               <Switch defaultChecked size="small" color="default" />
             </Grid>
             <Grid item>
-              <Brightness3 />
+              <Brightness3 sx={{ position: "relative", top: "5px" }} />
             </Grid>
           </Grid>
           <Button
-            sx={{ width: 100 }}
+            sx={{ width: 110 }}
             variant="contained"
             startIcon={<Person />}
           >
             ثبت نام
           </Button>
-          <Button sx={{ width: 100 }} variant="outlined">
+          <Button sx={{ width: 110 }} variant="outlined">
             ورود
           </Button>
         </Box>
