@@ -5,6 +5,7 @@ const nextConfig = {
   images: {
     domains: ["picsum.photos"],
   },
+  ignoreDuringBuilds: true,
 };
 
 module.exports = nextConfig;
