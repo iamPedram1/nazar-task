@@ -2,17 +2,20 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import NavBar from "../components/navBar";
 import RTL from "../services/RTL";
-import { Container } from "@mui/material";
-
+import { Box } from "@mui/material";
+import { useState } from "react";
+import bodyStyle from "../styles/body";
 function MyApp({ Component, pageProps }: AppProps) {
+  const [darkMode, setDarkMode] = useState(false);
+
   return (
     <>
-      <div className="container">
+      <Box sx={bodyStyle(darkMode)}>
         <RTL>
-          <NavBar />
-          <Component {...pageProps} />
+          <NavBar darkMode={darkMode} onSetDarkMode={setDarkMode} />
+          <Component darkMode={darkMode} {...pageProps} />
         </RTL>
-      </div>
+      </Box>
     </>
   );
 }

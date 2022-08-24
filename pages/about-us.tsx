@@ -1,25 +1,45 @@
-import { Box, Grid, Typography, Skeleton, Button } from "@mui/material";
-import { useState } from "react";
+import { Box, Grid, Typography, Button } from "@mui/material";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import AboutUsSkelet from "../components/aboutUsSkelet";
 import config from "../config.json";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
-const AboutUs = () => {
-  const [loading, setLoading] = useState(false);
+import {
+  textHolder,
+  textHeader,
+  textDescription,
+  container,
+} from "../styles/AboutUs";
+import { PageProps } from "../type/types";
+
+const AboutUs = ({ darkMode }: PageProps) => {
+  const [loading, setLoading] = useState(true);
+  const [startLoading, setStartLoading] = useState(false);
+
+  useEffect(() => {
+    if (loading) {
+      setTimeout(() => {
+        setStartLoading(true);
+      }, 1000);
+    }
+    setStartLoading(true);
+  }, []);
 
   return (
     <>
-      {loading ? (
-        <AboutUsSkelet />
-      ) : (
+      <Box
+        sx={loading ? { display: "block", pb: "4.8rem" } : { display: "none" }}
+      >
+        <AboutUsSkelet darkMode={darkMode} />
+      </Box>
+      {startLoading && (
         <Box
-          sx={{
-            backgroundColor: "#fff",
-            p: "2rem 4rem",
-            m: "0 1rem",
-            borderRadius: "10px",
-          }}
+          sx={
+            loading
+              ? { position: "relative", right: "1000rem" }
+              : container(darkMode)
+          }
         >
           <Grid
             container
@@ -33,30 +53,13 @@ const AboutUs = () => {
                 width="400"
                 height="400"
                 style={{ borderRadius: "90px" }}
-                onLoad={() => console.log("on Load")}
-                onLoadingComplete={() => console.log("Loading Completed")}
+                onLoadingComplete={() => setLoading(false)}
               />
             </Grid>
             <Grid item xs={6}>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
-                <Typography
-                  sx={{
-                    color: "#071440",
-                    fontWeight: "500",
-                    fontSize: "1.5rem",
-                    mb: "2rem",
-                  }}
-                >
-                  درباره ما
-                </Typography>
-                <Typography sx={{ lineHeight: "2rem", fontWeight: "400" }}>
+              <Box sx={textHolder}>
+                <Typography sx={textHeader(darkMode)}>درباره ما</Typography>
+                <Typography sx={textDescription(darkMode)}>
                   نکته مهمی که در بیشتر سایتهای ایرانی توجهی به آن نمیشود طراحی
                   صفحه درباره ما یا همان About Us است. اکثر افراد در این بخش
                   مطالبی طولانی و خسته کننده برای کاربر و یا نوشته ای کوتاه و
@@ -77,7 +80,7 @@ const AboutUs = () => {
             <Link href="/">
               <Button
                 sx={{ width: 200 }}
-                variant="contained"
+                variant="outlined"
                 endIcon={<ArrowCircleLeftIcon />}
               >
                 صفحه اصلی

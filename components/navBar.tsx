@@ -2,32 +2,32 @@ import { Box, Typography, Button, Switch, Grid } from "@mui/material";
 import { Person, WbSunny, Brightness3 } from "@mui/icons-material";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { ChangeEvent } from "react";
+import { NavBarProps } from "../type/types";
+import { flexRow, navTitle, containerColor, icons } from "../styles/NavBar";
 
-// SX Styles
-const flexRow = {
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "space-between",
-  alignItems: "center",
-};
-
-const navTitle = {
-  fontWeight: "400",
-  cursor: "pointer",
-};
-// Render
-const NavBar = (): JSX.Element => {
-  // get Current Path for active class
+const NavBar = ({ darkMode, onSetDarkMode }: NavBarProps): JSX.Element => {
   const { pathname } = useRouter();
+  // Event Handler
+  const handleSwitch = (e: ChangeEvent<HTMLInputElement>, checked: boolean) => {
+    onSetDarkMode(checked);
+  };
 
+  // Render
   return (
     <>
-      <Box sx={[flexRow, { m: 2, p: 2, borderRadius: 3, bgcolor: "#fff" }]}>
+      <Box
+        sx={[
+          flexRow,
+          { m: "0 1rem 1rem", p: 2, borderRadius: 3 },
+          containerColor(darkMode),
+        ]}
+      >
         <Box sx={[flexRow, { gap: "20px" }]}>
           <Link href="/">
             <Typography
               className={pathname === "/" ? "active" : ""}
-              sx={navTitle}
+              sx={navTitle(darkMode)}
             >
               صفحه نخست
             </Typography>
@@ -35,7 +35,7 @@ const NavBar = (): JSX.Element => {
           <Link href="/about-us">
             <Typography
               className={pathname === "/about-us" ? "active" : ""}
-              sx={navTitle}
+              sx={navTitle(darkMode)}
             >
               درباره ما
             </Typography>
@@ -50,14 +50,20 @@ const NavBar = (): JSX.Element => {
           >
             <Grid item>
               <WbSunny
-                sx={{ color: "#FFB82E", position: "relative", top: "5px" }}
+                sx={
+                  darkMode
+                    ? [icons, { color: "#fff" }]
+                    : [icons, { color: "#FFB82E" }]
+                }
               />
             </Grid>
             <Grid item>
-              <Switch defaultChecked size="small" color="default" />
+              <Switch onChange={handleSwitch} size="small" color="default" />
             </Grid>
             <Grid item>
-              <Brightness3 sx={{ position: "relative", top: "5px" }} />
+              <Brightness3
+                sx={darkMode ? [icons, { color: "#FFB82E" }] : icons}
+              />
             </Grid>
           </Grid>
           <Button

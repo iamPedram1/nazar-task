@@ -1,17 +1,10 @@
-import { Box, Grid, Typography, Skeleton } from "@mui/material";
-import Image from "next/image";
-import config from "../config.json";
+import { Box, Grid, Skeleton } from "@mui/material";
+import { container } from "../styles/AboutUs";
+import { PageProps } from "../type/types";
 
-function AboutUsSkelet() {
+const AboutUsSkelet = ({ darkMode }: PageProps): JSX.Element => {
   return (
-    <Box
-      sx={{
-        backgroundColor: "#fff",
-        p: "2rem 4rem",
-        m: "0 1rem",
-        borderRadius: "10px",
-      }}
-    >
+    <Box sx={container(darkMode)}>
       <Grid container alignItems="center">
         <Grid item xs={6}>
           <Skeleton
@@ -45,6 +38,6 @@ function AboutUsSkelet() {
       </Grid>
     </Box>
   );
-}
+};
 
 export default AboutUsSkelet;

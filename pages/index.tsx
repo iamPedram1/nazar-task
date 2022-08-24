@@ -1,24 +1,15 @@
-import type { NextPage } from "next";
+import { Box, Typography, Button } from "@mui/material";
+import { homeContainer } from "../styles/Home";
+import { PageProps } from "../type/types";
 import Image from "next/image";
 import Link from "next/link";
-import { Box, Typography, Button } from "@mui/material";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import config from "../config.json";
-const container = {
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-  borderRadius: "10px",
-  padding: "2rem",
-  margin: "0 1rem",
-  backgroundColor: "#fff",
-};
 
-const Home: NextPage = () => {
+const Home = ({ darkMode }: PageProps) => {
   return (
     <>
-      <Box sx={container}>
+      <Box sx={homeContainer(darkMode)}>
         <Image
           src={config.apiEndPoint}
           loading="eager"
@@ -26,7 +17,9 @@ const Home: NextPage = () => {
           height="400"
           style={{ borderRadius: "15px" }}
         />
-        <Typography sx={{ marginTop: "10px" }}>
+        <Typography
+          sx={darkMode ? { mt: "10px", color: "#fff" } : { mt: "10px" }}
+        >
           لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
           استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
           ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و
