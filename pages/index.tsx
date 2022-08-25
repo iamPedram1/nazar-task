@@ -15,7 +15,7 @@ const Home = ({ darkMode }: PageProps) => {
       <Box sx={homeContainer(darkMode)}>
         <Image
           src={config.apiEndPoint}
-          loading="eager"
+          priority={true}
           width="800"
           height="400"
           style={{ borderRadius: "15px" }}
