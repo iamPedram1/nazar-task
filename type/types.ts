@@ -10,3 +10,11 @@ export interface PageProps {
 export interface RTLProps {
   children: JSX.Element | JSX.Element[];
 }
+
+export interface AboutUsProps {
+  darkMode: boolean;
+  showSkelet: boolean;
+  onSetShowSkelet: React.Dispatch<React.SetStateAction<boolean>>;
+  showContent: boolean;
+  onSetShowContent: React.Dispatch<React.SetStateAction<boolean>>;
+}

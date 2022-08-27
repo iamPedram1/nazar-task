@@ -1,30 +1,33 @@
 import { Box, Grid, Typography, Button } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import {
   textHolder,
   textHeader,
   textDescription,
   container,
 } from "../styles/AboutUs";
-import { PageProps } from "../type/types";
+import { AboutUsProps, PageProps } from "../type/types";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
 import AboutUsSkelet from "../components/aboutUsSkelet";
 import config from "../config.json";
 
-const AboutUs = ({ darkMode }: PageProps) => {
-  const [loading, setLoading] = useState(true);
-  const [startLoading, setStartLoading] = useState(false);
+const AboutUs = ({
+  darkMode,
+  showSkelet,
+  onSetShowSkelet,
+  showContent,
+  onSetShowContent,
+}: AboutUsProps) => {
   // CDM
   useEffect(() => {
-    if (loading) {
+    if (showSkelet) {
       setTimeout(() => {
-        setStartLoading(true);
+        onSetShowContent(true);
       }, 2000);
     } else {
-      setStartLoading(true);
+      onSetShowContent(true);
     }
   }, []);
 
@@ -35,14 +38,16 @@ const AboutUs = ({ darkMode }: PageProps) => {
         <title>درباره ما</title>
       </Head>
       <Box
-        sx={loading ? { display: "block", pb: "4.8rem" } : { display: "none" }}
+        sx={
+          showSkelet ? { display: "block", pb: "4.8rem" } : { display: "none" }
+        }
       >
         <AboutUsSkelet darkMode={darkMode} />
       </Box>
-      {startLoading && (
+      {showContent && (
         <Box
           sx={
-            loading
+            showSkelet
               ? { position: "relative", right: "1000rem" }
               : container(darkMode)
           }
@@ -55,12 +60,12 @@ const AboutUs = ({ darkMode }: PageProps) => {
             spacing={[0, 10]}
           >
             <Grid item xs={12} sm={12} md={6}>
-              <Image
+              <img
                 src={config.apiEndPoint}
                 width="400"
                 height="400"
-                style={{ borderRadius: "90px" }}
-                onLoadingComplete={() => setLoading(false)}
+                style={{ borderRadius: "90px", objectFit: "cover" }}
+                onLoad={() => onSetShowSkelet(false)}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6}>

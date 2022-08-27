@@ -15,7 +15,6 @@ const Home = ({ darkMode }: PageProps) => {
       <Box sx={homeContainer(darkMode)}>
         <Image
           src={config.apiEndPoint}
-          priority={true}
           width="800"
           height="400"
           style={{ borderRadius: "15px" }}
@@ -37,7 +36,7 @@ const Home = ({ darkMode }: PageProps) => {
         </Typography>
         <Link href="/about-us">
           <Button
-            sx={{ width: 200 }}
+            sx={{ width: 200, mt: 3 }}
             variant="contained"
             endIcon={<ArrowCircleLeftIcon />}
           >
